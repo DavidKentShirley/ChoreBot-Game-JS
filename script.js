@@ -15,7 +15,7 @@ let openDoor3;
 
 let clodesDoorPath = 'https://content.codecademy.com/projects/chore-door/images/closed_door.svg';
 
-const startButton = document.getElementById('start');
+let startButton = document.getElementById('start');
 
 let currentlyPlaying = true;
 
@@ -83,6 +83,22 @@ doorImage3.onclick = () => {
     }
 }
 
+const startRound = () => {
+    numClosedDoors = 3;
+    door1.src = clodesDoorPath;
+    door2.src = clodesDoorPath;
+    door3.src = clodesDoorPath;
+    startButton.innerHTML = 'Good Luck';
+    currentlyPlaying = true;
+    randomChoreDoorGenerator();
+}
+
+startButton.onClick = () => {
+    if(!currentlyPlaying){
+        startRound();
+    }   
+}
+
 const gameOver = (status) => {
     if (status === 'win'){
         startButton.innerHTML = 'You Win! Play again?'
@@ -92,4 +108,4 @@ const gameOver = (status) => {
     currentlyPlaying = false;
 }
 
-randomChoreDoorGenerator();
+startRound();
